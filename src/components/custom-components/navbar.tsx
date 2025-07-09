@@ -13,12 +13,12 @@ const Navbar: React.FC = () => {
       <NavigationMenu className="bg-amber-300">
         <NavigationMenuList>
           <NavigationMenuItem className="flex">
-              <Link to="/">
-                <NavigationMenuLink>Home</NavigationMenuLink>
-              </Link>
-              <Link to="/courses">
-                <NavigationMenuLink>Courses</NavigationMenuLink>
-              </Link>
+            <NavigationMenuLink asChild>
+              <Link to="/">Home</Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link to="/courses">Courses</Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
