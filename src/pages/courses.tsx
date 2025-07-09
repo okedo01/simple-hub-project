@@ -32,9 +32,9 @@ const courses: React.FC = () => {
   })
 
   return (
-    <div>
+    <div className="">
       {courses.map(course => (
-        <Card key={course.id}>
+        <Card key={course.id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <CardHeader>
             <CardTitle>{ course.title }</CardTitle>
             <CardDescription>{ course.description }</CardDescription>

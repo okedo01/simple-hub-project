@@ -6,7 +6,7 @@ import NotFound from "./components/custom-components/NotFound"
 
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
+    <div className="">
       <Routes>
         <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
