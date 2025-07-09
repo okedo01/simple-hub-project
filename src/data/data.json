@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Web Development",
+    "description": "Learn the foundations of HTML, CSS, and JavaScript.",
+    "duration": "6 weeks",
+    "category": "Web Development",
+    "experience": "Beginner"
+  },
+  {
+    "id": 2,
+    "title": "Advanced React with TypeScript",
+    "description": "Build powerful React apps using TypeScript, Context, and Hooks.",
+    "duration": "8 weeks",
+    "category": "Frontend Development",
+    "experience": "Advanced"
+  },
+  {
+    "id": 3,
+    "title": "Python for Data Analysis",
+    "description": "Analyze and visualize data with Python, Pandas, and Matplotlib.",
+    "duration": "7 weeks",
+    "category": "Data Science",
+    "experience": "Intermediate"
+  },
+  {
+    "id": 4,
+    "title": "UI/UX Design Principles",
+    "description": "Design intuitive interfaces with modern UX patterns.",
+    "duration": "5 weeks",
+    "category": "Design",
+    "experience": "Beginner"
+  },
+  {
+    "id": 5,
+    "title": "Full Stack Web Development",
+    "description": "Learn both frontend and backend using MERN stack.",
+    "duration": "10 weeks",
+    "category": "Full Stack",
+    "experience": "Intermediate"
+  },
+  {
+    "id": 6,
+    "title": "Machine Learning Basics",
+    "description": "Understand ML concepts and build simple models with Python.",
+    "duration": "9 weeks",
+    "category": "AI & Machine Learning",
+    "experience": "Intermediate"
+  },
+  {
+    "id": 7,
+    "title": "DevOps Fundamentals",
+    "description": "Explore CI/CD, Docker, and cloud deployment techniques.",
+    "duration": "6 weeks",
+    "category": "DevOps",
+    "experience": "Advanced"
+  },
+  {
+    "id": 8,
+    "title": "Responsive Web Design",
+    "description": "Make mobile-friendly websites with Flexbox and Grid.",
+    "duration": "4 weeks",
+    "category": "Web Design",
+    "experience": "Beginner"
+  },
+  {
+    "id": 9,
+    "title": "Database Design & SQL",
+    "description": "Learn relational databases and how to query with SQL.",
+    "duration": "5 weeks",
+    "category": "Databases",
+    "experience": "Intermediate"
+  },
+  {
+    "id": 10,
+    "title": "Cybersecurity Essentials",
+    "description": "Understand how to protect systems and networks.",
+    "duration": "6 weeks",
+    "category": "Cybersecurity",
+    "experience": "Beginner"
+  }
+]
