@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom'
 const Navbar: React.FC = () => {
   return (
     <div>
-      <NavigationMenu>
+      <NavigationMenu className="bg-amber-300">
         <NavigationMenuList>
-          <NavigationMenuItem>
+          <NavigationMenuItem className="flex">
               <Link to="/">
                 <NavigationMenuLink>Home</NavigationMenuLink>
               </Link>
