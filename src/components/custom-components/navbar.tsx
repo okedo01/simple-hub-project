@@ -1,13 +1,29 @@
 import React from 'react'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+} from "../ui/navigation-menu"
 import { Link } from 'react-router-dom'
 
-const navbar: React.FC = () => {
+const Navbar: React.FC = () => {
   return (
     <div>
-      <Link to="/">Home</Link>
-      <Link to="/courses">Courses</Link>
+      <NavigationMenu>
+        <NavigationMenuList>
+          <NavigationMenuItem>
+              <Link to="/">
+                <NavigationMenuLink>Home</NavigationMenuLink>
+              </Link>
+              <Link to="/courses">
+                <NavigationMenuLink>Courses</NavigationMenuLink>
+              </Link>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
     </div>
   )
 }
 
-export default navbar
+export default Navbar
