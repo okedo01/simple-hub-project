@@ -9,8 +9,8 @@ import { Link } from 'react-router-dom'
 
 const Navbar: React.FC = () => {
   return (
-    <div>
-      <NavigationMenu className="bg-amber-300">
+    <div className="flex justify-end items-center bg-blue-600 text-sky-200 pr-4">
+      <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem className="flex">
             <NavigationMenuLink asChild>
@@ -18,6 +18,9 @@ const Navbar: React.FC = () => {
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
               <Link to="/courses">Courses</Link>
+            </NavigationMenuLink>
+            <NavigationMenuLink asChild>
+              <Link to="/logout">Logout</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>

@@ -3,12 +3,14 @@ import Home from "./pages/Home"
 import Layout from "./components/custom-components/Layout"
 import Courses from "./pages/Courses"
 import NotFound from "./components/custom-components/NotFound"
+import Login from "./pages/Login"
 
 function App() {
   return (
     <div className="">
       <Routes>
         <Route path="/" element={<Layout />}>
+        <Route path="/login" element={<Login />} />
         <Route index element={<Home />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="*" element={<NotFound />} />
