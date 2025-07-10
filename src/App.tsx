@@ -6,6 +6,7 @@ import NotFound from "./components/custom-components/NotFound"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import ProtectedRoute from "./components/custom-components/ProtectedRoute"
+import Logout from "./pages/Logout"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<SignUp />} />
         <Route index element={<Home />} />
         <Route path="/courses" element={
