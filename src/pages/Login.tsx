@@ -12,6 +12,7 @@ import {
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { useForm, type FieldValues } from 'react-hook-form'
+import { Link } from 'react-router-dom'
 
 const Login: React.FC = () => {
     const {
@@ -36,7 +37,9 @@ const Login: React.FC = () => {
           Enter your email below to login to your account
         </CardDescription>
         <CardAction>
+          <Link to="/signup">
           <Button variant="link">Sign Up</Button>
+          </Link>
         </CardAction>
       </CardHeader>
       <CardContent>
