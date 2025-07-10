@@ -12,10 +12,10 @@ function App() {
   return (
     <div className="">
       <Routes>
-        <Route path="/" element={<Layout />}>
         <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Layout />}>
+        <Route path="/logout" element={<Logout />} />
         <Route index element={<Home />} />
         <Route path="/courses" element={
           <ProtectedRoute>
