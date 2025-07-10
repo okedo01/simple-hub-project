@@ -5,6 +5,7 @@ import Courses from "./pages/Courses"
 import NotFound from "./components/custom-components/NotFound"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
+import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 
 function App() {
   return (
@@ -14,7 +15,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route index element={<Home />} />
-        <Route path="/courses" element={<Courses />} />
+        <Route path="/courses" element={
+          <ProtectedRoute>
+            <Courses />
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
