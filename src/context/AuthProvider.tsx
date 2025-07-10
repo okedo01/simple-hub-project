@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react"
+import React, { createContext, useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 type AuthContextType = {
@@ -25,14 +25,23 @@ export const AuthProvider = ({ children }: props) => {
   const [user, setUser] = useState<string | null>(null);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  })
+
   const Login = (email: string) => {
     setUser(email);
     navigate("/courses");
+    localStorage.setItem("user", email);
   }
 
   const Logout = () => {
     setUser(null);
     navigate("/login");
+    localStorage.removeItem("user");
   }
 
   return (
