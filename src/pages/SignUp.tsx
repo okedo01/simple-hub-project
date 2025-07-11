@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Button } from "../components/ui/button"
 import {
     Card,
@@ -11,7 +10,12 @@ import {
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Link } from 'react-router-dom'
-import { useForm, type FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+
+type formData = {
+    email: string
+    password: string
+}
 
 const SignUp: React.FC = () => {
 
@@ -20,9 +24,9 @@ const SignUp: React.FC = () => {
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
-    } = useForm();
+    } = useForm<formData>();
 
-    const onSubmit = async (data: FieldValues) => {
+    const onSubmit = async (data: formData) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             localStorage.setItem("user", JSON.stringify(data));

@@ -12,7 +12,7 @@ import {
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { useForm, type FieldValues } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
 
 const Login: React.FC = () => {
@@ -24,27 +24,30 @@ const Login: React.FC = () => {
   } = useForm();
 
   const { Login } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {
 
     const storedUser = localStorage.getItem("user");
 
-    if(!storedUser){
+    if (!storedUser) {
       alert("No user found. Please sign up first.");
       return;
     }
     const parsedUser = JSON.parse(storedUser);
 
-    if(data.email === parsedUser.email && data.password === parsedUser.password){
+    if (data.email === parsedUser.email && data.password === parsedUser.password) {
       alert("Login successful");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      Login(data.email);
+      navigate("/");
+
+      reset();
     } else {
       alert("Please! enter valid credentials");
     }
-      await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    Login(data.email)
-
-    reset();
   }
 
   return (
