@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "../components/ui/button"
 import {
     Card,
@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { useForm, type FieldValues } from 'react-hook-form'
 
 const SignUp: React.FC = () => {
+
     const {
         register,
         handleSubmit,
@@ -22,8 +23,13 @@ const SignUp: React.FC = () => {
     } = useForm();
 
     const onSubmit = async (data: FieldValues) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        reset();
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            localStorage.setItem("user", JSON.stringify(data));
+            reset();
+        } catch (error) {
+            console.error("Error during sign up", error);
+        }
     }
 
     return (
@@ -66,7 +72,7 @@ const SignUp: React.FC = () => {
                                             message: "Password must be 7 characters"
                                         }
                                     })}
-                                    id="password" type="password" required />
+                                    id="password" type="password" />
                             </div>
                             {errors.password && (
                                 <p className="text-red-800 text-sm">{`${errors.password.message}`}</p>
