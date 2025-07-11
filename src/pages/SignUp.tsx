@@ -43,32 +43,32 @@ const SignUp: React.FC = () => {
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
-                                { ...register("email", {
-                                    required: "Email is required"
-                                })}
+                                    {...register("email", {
+                                        required: "Email is required"
+                                    })}
                                     id="email"
                                     type="email"
                                     placeholder="m@example.com"
                                 />
                             </div>
-                            { errors.email && (
+                            {errors.email && (
                                 <p className="text-red-800 text-sm">{`${errors.email.message}`}</p>
                             )}
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
                                 </div>
-                                <Input 
-                                { ...register("password", {
-                                    required: "Password is required",
-                                    minLength: {
-                                        value: 7,
-                                        message: "Password must be 7 characters"
-                                    }
-                                })}
-                                id="password" type="password" required />
+                                <Input
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: {
+                                            value: 7,
+                                            message: "Password must be 7 characters"
+                                        }
+                                    })}
+                                    id="password" type="password" required />
                             </div>
-                            { errors.password && (
+                            {errors.password && (
                                 <p className="text-red-800 text-sm">{`${errors.password.message}`}</p>
                             )}
                             <CardFooter className="flex-col gap-2">
