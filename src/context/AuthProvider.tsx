@@ -3,13 +3,15 @@ import { useNavigate } from "react-router-dom"
 
 type AuthContextType = {
   user: string | null
-  Login: (email: string, password: string) => void
+  Login: (email: string) => void
   Logout: () => void
 }
 
 type props = {
   children: React.ReactNode
 }
+
+const navigate = useNavigate();
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -22,42 +24,26 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }: props) => {
-  const [user, setUser] = useState<string | null>(null);
-  const [loginError, setLoginError] = useState<string | null>("");
-  const navigate = useNavigate();
+
+  const [ user, setUser ] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
+    const storedUser = localStorage.getItem("userEmail");
+    if(storedUser) {
       setUser(storedUser);
     }
   })
 
-  const Login = (email: string, password: string) => {
-    setUser(email);
+  const Login = (email: string) => {
     navigate("/");
-    localStorage.setItem("user", email);
-    const storedUser = localStorage.getItem("user");
-
-    if (!storedUser) {
-      setLoginError("No user found. Please sign up first.");
-      return;
-    }
-    const parsedUser = JSON.parse(storedUser);
-
-    if (email === parsedUser.email && password === parsedUser.password) {
-
-      navigate("/");
-
-    } else {
-      setLoginError("Please! enter valid credentials");
-    }
+    setUser(email);
+    localStorage.setItem("userEmail", email);
   }
 
   const Logout = () => {
-    setUser(null);
     navigate("/login");
-    localStorage.removeItem("user");
+    setUser(null);
+    localStorage.removeItem("userEmail");
   }
 
   return (
