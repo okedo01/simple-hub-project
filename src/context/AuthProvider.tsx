@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 type AuthContextType = {
   user: string | null
-  Login: (email: string) => void
+  Login: (email: string, password: string) => void
   Logout: () => void
 }
 
@@ -23,6 +23,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }: props) => {
   const [user, setUser] = useState<string | null>(null);
+  const [loginError, setLoginError] = useState<string | null>("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,10 +33,25 @@ export const AuthProvider = ({ children }: props) => {
     }
   })
 
-  const Login = (email: string) => {
+  const Login = (email: string, password: string) => {
     setUser(email);
     navigate("/");
     localStorage.setItem("user", email);
+    const storedUser = localStorage.getItem("user");
+
+    if (!storedUser) {
+      setLoginError("No user found. Please sign up first.");
+      return;
+    }
+    const parsedUser = JSON.parse(storedUser);
+
+    if (email === parsedUser.email && password === parsedUser.password) {
+
+      navigate("/");
+
+    } else {
+      setLoginError("Please! enter valid credentials");
+    }
   }
 
   const Logout = () => {

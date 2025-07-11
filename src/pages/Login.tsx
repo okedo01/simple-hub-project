@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "../components/ui/button"
 import {
   Card,
@@ -16,6 +16,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
 
 const Login: React.FC = () => {
+  const [loginError, setLoginError] = useState<string | null>("");
   const {
     register,
     handleSubmit,
@@ -27,31 +28,18 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {
-
-    const storedUser = localStorage.getItem("user");
-
-    if (!storedUser) {
-      alert("No user found. Please sign up first.");
-      return;
-    }
-    const parsedUser = JSON.parse(storedUser);
-
-    if (data.email === parsedUser.email && data.password === parsedUser.password) {
-      alert("Login successful");
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      Login(data.email);
-      navigate("/");
-
-      reset();
-    } else {
-      alert("Please! enter valid credentials");
-    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    Login(data.email, data.password);
+    navigate("/");
+    reset();
 
   }
 
   return (
     <div className="grid justify-items-center items-center min-h-screen">
+      {loginError && (
+        <p className="text-sm text-red-500">{loginError}</p>
+      )}
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
