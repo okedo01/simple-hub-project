@@ -11,34 +11,60 @@ import {
 } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
-import { useForm, type FieldValues } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
 
+type formData = {
+  email: string
+  password: string
+}
+
 const Login: React.FC = () => {
   const [loginError, setLoginError] = useState<string | null>("");
+  const { Login } = useAuth();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm();
+  } = useForm<formData>();
 
-  const { Login } = useAuth();
-  const navigate = useNavigate();
 
-  const onSubmit = async (data: FieldValues) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    Login(data.email, data.password);
-    navigate("/");
-    reset();
+  const onSubmit = async (data: formData) => {
+    setLoginError("");
+
+    const storedUser = localStorage.getItem("user");
+
+    if (!storedUser) {
+      setLoginError("No user found. Please sign up first.");
+      return;
+    }
+
+    const parseUser = JSON.parse(storedUser);
+
+    if (data.email === parseUser.email && data.password === parseUser.password) {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      Login(data.email);
+
+      reset();
+
+      navigate("/");
+    } else {
+      setLoginError("Invalid Credentials");
+    }
+
+
 
   }
 
   return (
     <div className="grid justify-items-center items-center min-h-screen">
-      {loginError && (
-        <p className="text-sm text-red-500">{loginError}</p>
+      { loginError && (
+        <p className="text-sm text-red-500">{ loginError }</p>
       )}
       <Card className="w-full max-w-sm">
         <CardHeader>

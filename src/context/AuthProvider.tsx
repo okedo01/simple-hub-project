@@ -11,8 +11,6 @@ type props = {
   children: React.ReactNode
 }
 
-const navigate = useNavigate();
-
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
@@ -24,11 +22,12 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }: props) => {
+  const navigate = useNavigate();
 
   const [ user, setUser ] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("userEmail");
+    const storedUser = localStorage.getItem("user");
     if(storedUser) {
       setUser(storedUser);
     }
@@ -37,13 +36,13 @@ export const AuthProvider = ({ children }: props) => {
   const Login = (email: string) => {
     navigate("/");
     setUser(email);
-    localStorage.setItem("userEmail", email);
+    localStorage.setItem("user", email);
   }
 
   const Logout = () => {
     navigate("/login");
     setUser(null);
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem("user");
   }
 
   return (
