@@ -39,7 +39,7 @@ const Register: React.FC = () => {
 
     useEffect(() => {
         if (!courseID) return;
-        fetch("./src/data/data.json")
+        fetch("../src/data/data.json")
             .then(resource => {
                 if (!resource.ok) {
                     throw new Error("Failed to fetch");
