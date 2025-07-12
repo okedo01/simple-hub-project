@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { Courses } from '../types/Types';
+import type { Courses } from '../lib/Types';
 import {
   Card,
   CardAction,
@@ -10,6 +10,7 @@ import {
   CardTitle,
 } from "../components/ui/card"
 import { Button } from '../components/ui/button';
+import { Link } from 'react-router-dom';
 
 const courses: React.FC = () => {
   const [courses, setCourses] = useState<Courses[]>([]);
@@ -32,9 +33,9 @@ const courses: React.FC = () => {
   })
 
   return (
-    <div className="">
+    <div className="grid lg:grid-cols-3 gap-4">
       {courses.map(course => (
-        <Card key={course.id} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <Card key={course.id} className="">
           <CardHeader>
             <CardTitle>{ course.title }</CardTitle>
             <CardDescription>{ course.description }</CardDescription>
@@ -45,7 +46,9 @@ const courses: React.FC = () => {
           </CardContent>
           <CardFooter>
             <p>{ course.duration }</p>
+            <Link to="/register">
             <Button>Register</Button>
+            </Link>
           </CardFooter>
         </Card>
       ))}

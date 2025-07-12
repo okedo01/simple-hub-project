@@ -7,6 +7,7 @@ import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
 import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 import Logout from "./pages/Logout"
+import Register from "./pages/Register"
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Courses />
           </ProtectedRoute>
         } />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
