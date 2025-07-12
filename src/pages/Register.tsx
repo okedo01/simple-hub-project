@@ -54,7 +54,11 @@ const Register: React.FC = () => {
                                 </div>
                                 <Input
                                 { ...register("password", {
-                                    required: "Password is required"
+                                    required: "Password is required",
+                                    minLength: {
+                                        value: 7,
+                                        message: "Password must be 7 characters"
+                                    }
                                 })}
                                     id="password" type="password" />
                             </div>
