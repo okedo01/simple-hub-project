@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 
 const courses: React.FC = () => {
   const [courses, setCourses] = useState<Courses[]>([]);
-  const [ error, setError ] = useState<boolean>(true);
+  const [ error, setError ] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("./src/data/data.json")
@@ -30,7 +30,7 @@ const courses: React.FC = () => {
       .catch(err => {
         setError(err.message);
       })
-  })
+  }, [])
 
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 m-5">
@@ -46,7 +46,7 @@ const courses: React.FC = () => {
           </CardContent>
           <CardFooter className="flex justify-between">
             <p>{ course.duration }</p>
-            <Link to="/register">
+            <Link to={`/courses/${course.id}`}>
             <Button>Register</Button>
             </Link>
           </CardFooter>
