@@ -16,18 +16,19 @@ function App() {
         {/* {Private Routes} */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/register" element={<Register />} />
 
         {/* {Public Routes} */}
         <Route path="/" element={<Layout />}>
-        <Route path="/logout" element={<Logout />} />
-        <Route index element={<Home />} />
-        <Route path="/courses" element={
-          <ProtectedRoute>
-            <Courses />
-          </ProtectedRoute>
-        } />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route index element={<Home />} />
+          <Route path="/courses" element={
+            <ProtectedRoute>
+              <Courses />
+            </ProtectedRoute>
+          } />
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </div>
