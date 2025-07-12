@@ -21,9 +21,6 @@ const Navbar: React.FC = () => {
               <Link to="/">Home</Link>
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
-              <Link to="/courses">Courses</Link>
-            </NavigationMenuLink>
-            <NavigationMenuLink asChild>
               <Link to="/logout">
               <Button onClick={Logout}>Logout</Button>
               </Link>
