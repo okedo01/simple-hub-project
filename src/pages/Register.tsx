@@ -51,6 +51,9 @@ const Register: React.FC = () => {
                                     })}
                                     type="text" placeholder="Enter your name" />
                             </div>
+                            { errors.name && (
+                                <p className="text-red-500 text-sm">{errors.name.message}</p>
+                            )}
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
