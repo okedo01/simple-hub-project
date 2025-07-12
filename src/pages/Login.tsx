@@ -48,7 +48,7 @@ const Login: React.FC = () => {
     if (data.email === parseUser.email && data.password === parseUser.password) {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
-      Login(data.email);
+      Login(data.email, data.password);
 
       reset();
 

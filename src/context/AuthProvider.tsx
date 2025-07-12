@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom"
 
 type AuthContextType = {
   user: string | null
-  Login: (email: string) => void
+  SignUp: (email: string, password: string) => void
+  Login: (email: string, password: string) => void
   Logout: () => void
 }
 
@@ -33,16 +34,18 @@ export const AuthProvider = ({ children }: props) => {
     }
   })
 
-  const Login = (email: string) => {
+  const Login = (email: string, password: string) => {
     navigate("/");
     setUser(email);
+    setUser(password);
     localStorage.setItem("user", email);
+    localStorage.setItem("user", password);
   }
 
   const Logout = () => {
     navigate("/login");
     setUser(null);
-    localStorage.removeItem("user");
+    // localStorage.removeItem("user");
   }
 
   return (

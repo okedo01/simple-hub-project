@@ -12,8 +12,11 @@ function App() {
   return (
     <div className="">
       <Routes>
+        {/* {Private Routes} */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+
+        {/* {Public Routes} */}
         <Route path="/" element={<Layout />}>
         <Route path="/logout" element={<Logout />} />
         <Route index element={<Home />} />
