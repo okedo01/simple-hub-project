@@ -30,11 +30,23 @@ const Register: React.FC = () => {
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="name">Name</Label>
-                                <Input type="text" placeholder="Enter your name"/>
+                                <Input
+                                { ...register("name", {
+                                    required: "Name is required",
+                                    minLength: {
+                                        value: 4,
+                                        message: "Name must be 4 characters"
+                                    }
+                                })}
+                                type="text" placeholder="Enter your name"/>
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input id="email" type="email" placeholder="m@example.com" />
+                                <Input
+                                { ...register("email", {
+                                    required: "Email is requires"
+                                })}
+                                id="email" type="email" placeholder="m@example.com" />
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
