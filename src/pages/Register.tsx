@@ -11,13 +11,24 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useForm } from 'react-hook-form';
 
+type formData = {
+    name: string
+    email: string
+    password: string
+}
+
 const Register: React.FC = () => {
-    const { 
+    const {
         register,
         handleSubmit,
         reset,
-        formState: {errors, isSubmitting}
-    } = useForm();
+        formState: { errors, isSubmitting }
+    } = useForm<formData>();
+
+    const onSubmit = async (data: formData) => {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        reset();
+    }
 
     return (
         <div className="grid justify-items-center items-center min-h-screen">
@@ -26,40 +37,40 @@ const Register: React.FC = () => {
                     <CardTitle>Register for: </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="name">Name</Label>
                                 <Input
-                                { ...register("name", {
-                                    required: "Name is required",
-                                    minLength: {
-                                        value: 4,
-                                        message: "Name must be 4 characters"
-                                    }
-                                })}
-                                type="text" placeholder="Enter your name"/>
+                                    {...register("name", {
+                                        required: "Name is required",
+                                        minLength: {
+                                            value: 4,
+                                            message: "Name must be 4 characters"
+                                        }
+                                    })}
+                                    type="text" placeholder="Enter your name" />
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
-                                { ...register("email", {
-                                    required: "Email is requires",
-                                })}
-                                id="email" type="email" placeholder="m@example.com" />
+                                    {...register("email", {
+                                        required: "Email is requires",
+                                    })}
+                                    id="email" type="email" placeholder="m@example.com" />
                             </div>
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
                                 </div>
                                 <Input
-                                { ...register("password", {
-                                    required: "Password is required",
-                                    minLength: {
-                                        value: 7,
-                                        message: "Password must be 7 characters"
-                                    }
-                                })}
+                                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: {
+                                            value: 7,
+                                            message: "Password must be 7 characters"
+                                        }
+                                    })}
                                     id="password" type="password" />
                             </div>
 
@@ -73,6 +84,7 @@ const Register: React.FC = () => {
                 </CardContent>
             </Card>
         </div>
-    )}
+    )
+}
 
 export default Register
