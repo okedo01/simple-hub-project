@@ -44,7 +44,7 @@ const Register: React.FC = () => {
                                 <Label htmlFor="email">Email</Label>
                                 <Input
                                 { ...register("email", {
-                                    required: "Email is requires"
+                                    required: "Email is requires",
                                 })}
                                 id="email" type="email" placeholder="m@example.com" />
                             </div>
@@ -53,6 +53,9 @@ const Register: React.FC = () => {
                                     <Label htmlFor="password">Password</Label>
                                 </div>
                                 <Input
+                                { ...register("password", {
+                                    required: "Password is required"
+                                })}
                                     id="password" type="password" />
                             </div>
 
