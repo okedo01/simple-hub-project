@@ -62,6 +62,9 @@ const Register: React.FC = () => {
                                     })}
                                     id="email" type="email" placeholder="m@example.com" />
                             </div>
+                            { errors.email && (
+                                <p className="text-red-500 text-sm">{errors.email.message}</p>
+                            )}
                             <div className="grid gap-2">
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
