@@ -20,7 +20,8 @@ type formData = {
 }
 
 const Register: React.FC = () => {
-    const [courses, setCourses] = useState<Courses[]>([]);
+    const [courses, setCourses] = useState<Courses | null>(null);
+    const [error, setError] = useState<string | null>(null);
     const { id } = useParams();
     const courseID = Number(id);
 
@@ -37,6 +38,7 @@ const Register: React.FC = () => {
     }
 
     useEffect(() => {
+        if (!courseID) return;
         fetch("./src/data/data.json")
             .then(resource => {
                 if (!resource.ok) {
@@ -45,18 +47,27 @@ const Register: React.FC = () => {
                 return resource.json();
             })
             .then((courses: Courses[]) => {
-                setCourses(courses);
+                const foundCourse = courses.find(course => course.id === courseID);
+                if (!foundCourse) {
+                    setError("Course not found");
+                } else {
+                    setCourses(foundCourse);
+                }
             })
             .catch(err => {
                 console.log(err.message);
             })
-    })
+    }, [courseID])
+
+    if (error) return <p className="text-red-500 text-center mt-4">{error}</p>;
+    if (!courses) return <p className="text-center mt-6">Loading course details...</p>;
+
     return (
         <div>
             <div className="grid justify-items-center items-center min-h-screen">
                 <Card className="w-full max-w-sm">
                     <CardHeader>
-                        <CardTitle>Register for: </CardTitle>
+                        <CardTitle>Register for: {courses?.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={handleSubmit(onSubmit)}>
