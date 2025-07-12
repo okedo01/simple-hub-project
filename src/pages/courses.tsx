@@ -33,7 +33,7 @@ const courses: React.FC = () => {
   })
 
   return (
-    <div className="grid lg:grid-cols-3 gap-4">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 m-5">
       {courses.map(course => (
         <Card key={course.id} className="">
           <CardHeader>
@@ -44,7 +44,7 @@ const courses: React.FC = () => {
           <CardContent>
             <p>{ course.category }</p>
           </CardContent>
-          <CardFooter>
+          <CardFooter className="flex justify-between">
             <p>{ course.duration }</p>
             <Link to="/register">
             <Button>Register</Button>
