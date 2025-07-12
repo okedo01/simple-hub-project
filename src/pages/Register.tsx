@@ -10,6 +10,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 type formData = {
     name: string
@@ -91,6 +92,9 @@ const Register: React.FC = () => {
                     </form>
                 </CardContent>
             </Card>
+            <Link to="/">
+            <Button>Go Back Home</Button>
+            </Link>
         </div>
     )
 }
