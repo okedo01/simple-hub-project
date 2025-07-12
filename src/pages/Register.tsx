@@ -1,9 +1,7 @@
 import React from 'react'
 import {
     Card,
-    CardAction,
     CardContent,
-    CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
@@ -11,8 +9,16 @@ import {
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
+import { useForm } from 'react-hook-form';
 
 const Register: React.FC = () => {
+    const { 
+        register,
+        handleSubmit,
+        reset,
+        formState: {errors, isSubmitting}
+    } = useForm();
+
     return (
         <div className="grid justify-items-center items-center min-h-screen">
             <Card className="w-full max-w-sm">
@@ -22,7 +28,7 @@ const Register: React.FC = () => {
                 <CardContent>
                     <form>
                         <div className="flex flex-col gap-6">
-                            <div>
+                            <div className="grid gap-2">
                                 <Label htmlFor="name">Name</Label>
                                 <Input type="text" placeholder="Enter your name"/>
                             </div>
@@ -39,7 +45,7 @@ const Register: React.FC = () => {
                             </div>
 
                             <CardFooter className="">
-                                <Button type="submit" className="w-full disabled:bg-gray-900">
+                                <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
                                     Register
                                 </Button>
                             </CardFooter>
