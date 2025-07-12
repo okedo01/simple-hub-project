@@ -51,7 +51,7 @@ const Register: React.FC = () => {
                                     })}
                                     type="text" placeholder="Enter your name" />
                             </div>
-                            { errors.name && (
+                            {errors.name && (
                                 <p className="text-red-500 text-sm">{errors.name.message}</p>
                             )}
                             <div className="grid gap-2">
@@ -62,7 +62,7 @@ const Register: React.FC = () => {
                                     })}
                                     id="email" type="email" placeholder="m@example.com" />
                             </div>
-                            { errors.email && (
+                            {errors.email && (
                                 <p className="text-red-500 text-sm">{errors.email.message}</p>
                             )}
                             <div className="grid gap-2">
@@ -79,7 +79,9 @@ const Register: React.FC = () => {
                                     })}
                                     id="password" type="password" />
                             </div>
-
+                            {errors.password && (
+                                <p className="text-red-500 text-sm">{errors.password.message}</p>
+                            )}
                             <CardFooter className="">
                                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
                                     Register
