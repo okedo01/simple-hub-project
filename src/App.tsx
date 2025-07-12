@@ -16,7 +16,6 @@ function App() {
         {/* {Private Routes} */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/register" element={<Register />} />
 
         {/* {Public Routes} */}
         <Route path="/" element={<Layout />}>
@@ -27,6 +26,7 @@ function App() {
               <Courses />
             </ProtectedRoute>
           } />
+          <Route path="/courses/:id" element={<Register />} />
 
           <Route path="*" element={<NotFound />} />
         </Route>
