@@ -13,7 +13,7 @@ const Navbar: React.FC = () => {
   const { Logout } = useAuth();
 
   return (
-    <div className="flex justify-end items-center bg-blue-600 text-sky-200 pr-4">
+    <div className="flex justify-end items-center sticky top-0 bg-gray-900 text-sky-200 pr-4">
       <NavigationMenu className="">
         <NavigationMenuList>
           <NavigationMenuItem className="flex">
