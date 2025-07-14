@@ -30,10 +30,10 @@ export const ThemeProvider = ({ children }: props) => {
     });
 
     useEffect(() => {
-        if (mode === "light") {
-            document.body.classList.add("light");
+        if (mode === "dark") {
+            document.body.classList.add("dark");
         } else {
-            document.body.classList.remove("light");
+            document.body.classList.remove("dark");
         }
         localStorage.setItem("theme", JSON.stringify(mode));
     }, [mode]);

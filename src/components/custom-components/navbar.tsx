@@ -8,6 +8,8 @@ import {
 import { Link } from 'react-router-dom'
 import { Button } from '../ui/button'
 import { useAuth } from '../../context/AuthProvider'
+import { Import } from 'lucide-react'
+import ThemeToggle from './ThemeToggle'
 
 const Navbar: React.FC = () => {
   const { Logout } = useAuth();
@@ -28,6 +30,7 @@ const Navbar: React.FC = () => {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+      <ThemeToggle />
     </div>
   )
 }
