@@ -1,5 +1,5 @@
 import type React from "react"
-import { Children, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
 type Theme = "light" | "dark";
@@ -24,8 +24,9 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }: props) => {
-    const [mode, setMode] = useState(() => {
-        localStorage.getItem("theme" as Theme) || "light";
+    const [mode, setMode] = useState<Theme>(() => {
+        const saved = localStorage.getItem("theme");
+        return saved === "dark" || saved === "light" ? saved : "light";
     });
 
     useEffect(() => {
@@ -37,13 +38,11 @@ export const ThemeProvider = ({ children }: props) => {
         localStorage.setItem("theme", JSON.stringify(mode));
     }, [mode]);
 
-    const toggleMode = () => {
-        setMode(prev => (
-            prev === "light" ? "dark" : "light"
-        ));
+    const toggleTheme = () => {
+        setMode((prev) => (prev === "light" ? "dark" : "light"));
     }
     return (
-        <themeContext.Provider value={{ mode, toggleMode }}>
+        <themeContext.Provider value={{ mode, toggleTheme }}>
             {children}
         </themeContext.Provider>
     )
