@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import type { Courses } from '../lib/Types';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
     Card,
     CardContent,
@@ -12,6 +12,7 @@ import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 
 type formData = {
     name: string
@@ -25,6 +26,8 @@ const Register: React.FC = () => {
     const { id } = useParams();
     const courseID = Number(id);
 
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -33,23 +36,24 @@ const Register: React.FC = () => {
     } = useForm<formData>();
 
     const onSubmit = async (data: formData) => {
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-         Swal.fire({
-        title: '🎉 Registration Successful!',
-        text: `You are now enrolled in "${course?.title}"`,
-        icon: 'success',
-        confirmButtonText: 'Go to Dashboard',
-        showCancelButton: true,
-        cancelButtonText: 'Start Exercises',
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate(`/students/${courseID}`);
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          // Redirect to course progress/exercise component
-          navigate(`/progress/${courseID}/${docRef.id}`);
-        } 
-      });
+
+        Swal.fire({
+            title: '🎉 Registration Successful!',
+            text: `You are now enrolled in "${courses?.title}"`,
+            icon: 'success',
+            confirmButtonText: 'Go Back Home',
+            showCancelButton: true,
+            cancelButtonText: 'Start Exercises',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                navigate("/");
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                navigate(`/courses/${courseID}`);
+            }
+        });
         reset();
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
     }
 
     useEffect(() => {
@@ -73,6 +77,7 @@ const Register: React.FC = () => {
                 console.log(err.message);
             })
     }, [courseID])
+
 
     if (error) return <p className="text-red-500 text-center mt-4">{error}</p>;
     if (!courses) return <p className="text-center mt-6">Loading course details...</p>;
