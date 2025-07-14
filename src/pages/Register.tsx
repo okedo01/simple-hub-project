@@ -34,15 +34,21 @@ const Register: React.FC = () => {
 
     const onSubmit = async (data: formData) => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
-        alert(
-            [
-                <div>
-                    <h4>Congrats! You have been registeres successful</h4>
-                    <Button>Go Back</Button>
-                    <Button>View Your Details</Button>
-                </div>
-            ]
-        );
+         Swal.fire({
+        title: '🎉 Registration Successful!',
+        text: `You are now enrolled in "${course?.title}"`,
+        icon: 'success',
+        confirmButtonText: 'Go to Dashboard',
+        showCancelButton: true,
+        cancelButtonText: 'Start Exercises',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/students/${courseID}`);
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // Redirect to course progress/exercise component
+          navigate(`/progress/${courseID}/${docRef.id}`);
+        } 
+      });
         reset();
     }
 
