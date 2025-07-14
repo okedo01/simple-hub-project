@@ -11,7 +11,6 @@ type themeContextType = {
 
 type props = {
     children: React.ReactNode;
-    toggleTheme: () => void;
 }
 
 const themeContext = createContext<themeContextType | undefined>(undefined);
@@ -26,20 +25,25 @@ export const useTheme = () => {
 
 export const ThemeProvider = ({ children }: props) => {
     const [mode, setMode] = useState(() => {
-        localStorage.getItem("theme") || "light";
+        localStorage.getItem("theme" as Theme) || "light";
     });
 
     useEffect(() => {
-        if(mode === "light") {
-
+        if (mode === "light") {
+            document.body.classList.add("light");
+        } else {
+            document.body.classList.remove("light");
         }
-    }, []);
+        localStorage.setItem("theme", JSON.stringify(mode));
+    }, [mode]);
 
     const toggleMode = () => {
-        setMode(!mode);
+        setMode(prev => (
+            prev === "light" ? "dark" : "light"
+        ));
     }
     return (
-        <themeContext.Provider value={{ mode }}>
+        <themeContext.Provider value={{ mode, toggleMode }}>
             {children}
         </themeContext.Provider>
     )
