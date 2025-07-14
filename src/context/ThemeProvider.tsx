@@ -1,8 +1,13 @@
 import type React from "react"
-import { Children, useContext, useState } from "react";
+import { Children, useContext, useEffect, useState } from "react";
 import { createContext } from "react";
 
-type themeContextType = "light" | "dark";
+type Theme = "light" | "dark";
+
+type themeContextType = {
+    mode: Theme;
+    toggleTheme: () => void;
+}
 
 type props = {
     children: React.ReactNode;
@@ -20,7 +25,15 @@ export const useTheme = () => {
 }
 
 export const ThemeProvider = ({ children }: props) => {
-    const [mode, setMode] = useState<theme>(dark);
+    const [mode, setMode] = useState(() => {
+        localStorage.getItem("theme") || "light";
+    });
+
+    useEffect(() => {
+        if(mode === "light") {
+
+        }
+    }, []);
 
     const toggleMode = () => {
         setMode(!mode);
