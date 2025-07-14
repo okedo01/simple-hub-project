@@ -34,6 +34,15 @@ const Register: React.FC = () => {
 
     const onSubmit = async (data: formData) => {
         await new Promise((resolve) => setTimeout(resolve, 1000));
+        alert(
+            [
+                <div>
+                    <h4>Congrats! You have been registeres successful</h4>
+                    <Button>Go Back</Button>
+                    <Button>View Your Details</Button>
+                </div>
+            ]
+        );
         reset();
     }
 
