@@ -7,7 +7,7 @@ const ThemeToggle: React.FC = () => {
   const { mode, toggleTheme } = useTheme();
 
   return (
-    <Button onClick={toggleTheme} variant="ghost" size="icon">
+    <Button onClick={toggleTheme} variant="ghost" size="icon" className="w-10 h-10">
       {mode === "light" ? <Moon /> : <Sun />}
     </Button>
   );

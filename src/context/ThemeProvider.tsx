@@ -35,7 +35,7 @@ export const ThemeProvider = ({ children }: props) => {
         } else {
             document.body.classList.remove("dark");
         }
-        localStorage.setItem("theme", JSON.stringify(mode));
+        localStorage.setItem("theme", mode);
     }, [mode]);
 
     const toggleTheme = () => {

@@ -15,21 +15,7 @@ const Navbar: React.FC = () => {
   const { Logout } = useAuth();
 
   return (
-    <div className="flex justify-end items-center sticky top-0 bg-gray-900 text-sky-200 pr-4">
-      <NavigationMenu className="">
-        <NavigationMenuList>
-          <NavigationMenuItem className="flex">
-            <NavigationMenuLink asChild>
-              <Link to="/">Home</Link>
-            </NavigationMenuLink>
-            <NavigationMenuLink asChild>
-              <Link to="/logout">
-              <Button onClick={Logout}>Logout</Button>
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
+    <div className="flex justify-end sticky top-0 pr-4">
       <ThemeToggle />
     </div>
   )
