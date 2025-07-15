@@ -4,3 +4,6 @@ export const getItem = (key: string) => {
 }
 
 //Retrive data from local storage
+export const setItem = (key: string, value: any) => {
+    localStorage.setItem(key, JSON.parse(value))
+}
