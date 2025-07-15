@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp"
 import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 import Logout from "./pages/Logout"
 import Register from "./pages/Register"
+import AdminDashboard from "./components/custom-components/AdminDashboard"
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="/courses/:id" element={<Register />} />
-
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

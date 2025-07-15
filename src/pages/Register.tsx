@@ -74,7 +74,7 @@ const Register: React.FC = () => {
                 }
             })
             .catch(err => {
-                console.log(err.message);
+                setError(err.message);
             })
     }, [courseID])
 
