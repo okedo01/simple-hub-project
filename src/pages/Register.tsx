@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { Courses } from '../lib/Types';
+import type { Courses, Students } from '../lib/Types';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
     Card,
@@ -13,6 +13,7 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import { getItem, setItem } from '../lib/localStorage';
 
 type formData = {
     name: string
@@ -43,6 +44,8 @@ const Register: React.FC = () => {
             courseTitle: courses?.title,
             progress: Math.floor((Math.random() * 100)) + 1,
         }
+        const storedStudent = getItem<typeof student[]>("students") ?? [];
+        setItem("students", [...storedStudent, student])
 
         Swal.fire({
             title: '🎉 Registration Successful!',

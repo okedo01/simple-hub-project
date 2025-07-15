@@ -5,14 +5,15 @@ export const setItem = (key: string, value: unknown): void => {
 }
 
 //save data to local storage
-export const getItem = (key: string) => {
+export const getItem = <T = unknown>(key: string): T | null => {
     const item = localStorage.getItem(key);
-    if(item === null) return null;
-
-    try{
-        return JSON.parse(item);
-    } catch {
-        return null;
+    if (item === null) return null;
+    else {
+        try {
+            return JSON.parse(item) as T;
+        } catch {
+            return null;
+        }
     }
 }
 
