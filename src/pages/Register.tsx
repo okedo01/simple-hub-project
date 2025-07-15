@@ -37,6 +37,13 @@ const Register: React.FC = () => {
 
     const onSubmit = async (data: formData) => {
 
+        const student = {
+            ...data,
+            courseID: courseID,
+            courseTitle: courses?.title,
+            progress: Math.floor((Math.random() * 100)) + 1,
+        }
+
         Swal.fire({
             title: '🎉 Registration Successful!',
             text: `You are now enrolled in "${courses?.title}"`,
