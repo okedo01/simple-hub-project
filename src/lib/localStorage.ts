@@ -15,3 +15,8 @@ export const getItem = (key: string) => {
         return null;
     }
 }
+
+//remove data from local storage
+export const removeItem = (key: string): void => {
+    localStorage.removeItem(key);
+}
