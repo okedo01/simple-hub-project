@@ -16,7 +16,25 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div></div>
+    <div>
+      <h1>All Registered Students</h1>
+      { students.map((student, index) => (
+         <div key={index} className="p-4 border-b flex justify-between">
+          <div>
+            <p><strong>Name:</strong> {student.name}</p>
+            <p><strong>Email:</strong> {student.email}</p>
+            <p><strong>Course:</strong> {student.courseTitle}</p>
+            <p><strong>Progress:</strong> {student.progress}%</p>
+          </div>
+          <button
+            onClick={() => handleDelete(index)}
+            className="bg-red-500 text-white px-3 py-1 rounded"
+          >
+            Delete
+          </button>
+        </div>
+      ))}
+    </div>
   )
 }
 

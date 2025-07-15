@@ -14,7 +14,8 @@ export type Students = {
   email: string;
   course: string;
   courseID: number;
-  progress: number
+  progress: number;
+  courseTitle: string
 };
 
 export const Exercises: Record<number, string[]> = {
