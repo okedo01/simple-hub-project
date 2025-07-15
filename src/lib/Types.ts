@@ -12,6 +12,7 @@ export type Students = {
   id: number; 
   name: string;
   email: string;
+  password: string
   course: string;
   courseID: number;
   progress: number;
