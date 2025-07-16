@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import type { Courses, Students } from '../lib/Types';
+import type { Courses } from '../lib/Types';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
     Card,
