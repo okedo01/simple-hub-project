@@ -14,7 +14,8 @@ import { Label } from '../components/ui/label';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { getItem, setItem } from '../lib/localStorage';
-import z from 'zod';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 const schema = z.object({
     name: z.string().min(4),
@@ -26,7 +27,7 @@ type formFields = z.infer<typeof schema>;
 
 const Register: React.FC = () => {
     const [courses, setCourses] = useState<Courses | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [errorMsg, setErrorMsg] = useState<string | null>(null);
     const { id } = useParams();
     const courseID = Number(id);
 
@@ -36,12 +37,10 @@ const Register: React.FC = () => {
         register,
         handleSubmit,
         reset,
-        formState: { errors, isSubmitting }
+        formState: { errors, isSubmitting },
+        setError,
     } = useForm<formFields>({
-        defaultValues: {
-            email: "studentHub@gmail.com"
-        },
-        resolver: zodResolver(schema);
+        resolver: zodResolver(schema)
     });
 
     const onSubmit: SubmitHandler<formFields> = async (data: formFields) => {
@@ -76,9 +75,6 @@ const Register: React.FC = () => {
                 message: "This email is already taken",
             })
         }
-
-
-
     }
 
     useEffect(() => {
@@ -93,18 +89,18 @@ const Register: React.FC = () => {
             .then((courses: Courses[]) => {
                 const foundCourse = courses.find(course => course.id === courseID);
                 if (!foundCourse) {
-                    setError("Course not found");
+                    setErrorMsg("Course not found");
                 } else {
                     setCourses(foundCourse);
                 }
             })
             .catch(err => {
-                setError(err.message);
+                setErrorMsg(err.message);
             })
     }, [courseID])
 
 
-    if (error) return <p className="text-red-500 text-center mt-4">{error}</p>;
+    if (errorMsg) return <p className="text-red-500 text-center mt-4">{errorMsg}</p>;
     if (!courses) return <p className="text-center mt-6">Loading course details...</p>;
 
     return (
