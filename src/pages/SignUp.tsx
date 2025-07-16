@@ -11,7 +11,7 @@ import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Link } from 'react-router-dom'
 import { useForm, type SubmitHandler } from 'react-hook-form'
-import { email, z } from "zod"
+import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 
 const schema = z.object({
@@ -61,11 +61,7 @@ const SignUp: React.FC = () => {
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input
-                                    {...register("email")} id="email"
-                                    type="email"
-                                    placeholder="m@example.com"
-                                />
+                                <Input {...register("email")} id="email" type="email" placeholder="m@example.com" />
                             </div>
                             {errors.email && (
                                 <p className="text-red-800 text-sm">{`${errors.email.message}`}</p>
@@ -74,22 +70,14 @@ const SignUp: React.FC = () => {
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
                                 </div>
-                                <Input
-                                    {...register("password", {
-                                        required: "Password is required",
-                                        minLength: {
-                                            value: 7,
-                                            message: "Password must be 7 characters"
-                                        }
-                                    })}
-                                    id="password" type="password" />
+                                <Input  {...register("password")} id="password" type="password" />
                             </div>
                             {errors.password && (
                                 <p className="text-red-800 text-sm">{`${errors.password.message}`}</p>
                             )}
                             <CardFooter className="flex-col gap-2">
                                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-800">
-                                    Sign up
+                                    {isSubmitting ? "Signing up" : "Sign up"}
                                 </Button>
                             </CardFooter>
                         </div>
