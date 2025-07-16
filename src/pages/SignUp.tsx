@@ -10,12 +10,16 @@ import {
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
 import { Link } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { useForm, type SubmitHandler } from 'react-hook-form'
+import { email, z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
 
-type formData = {
-    email: string
-    password: string
-}
+const schema = z.object({
+    email: z.string().email(),
+    password: z.string().min(7),
+})
+
+type formFields = z.infer<typeof schema>;
 
 const SignUp: React.FC = () => {
 
@@ -23,16 +27,21 @@ const SignUp: React.FC = () => {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        setError,
         reset,
-    } = useForm<formData>();
+    } = useForm<formFields>({
+        resolver: zodResolver(schema),
+    });
 
-    const onSubmit = async (data: formData) => {
+    const onSubmit: SubmitHandler<formFields> = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             localStorage.setItem("user", JSON.stringify(data));
             reset();
         } catch (error) {
-            console.error("Error during sign up", error);
+            setError("root", {
+                message: "This email is already taken"
+            })
         }
     }
 
@@ -53,10 +62,7 @@ const SignUp: React.FC = () => {
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
-                                    {...register("email", {
-                                        required: "Email is required"
-                                    })}
-                                    id="email"
+                                    {...register("email")} id="email"
                                     type="email"
                                     placeholder="m@example.com"
                                 />
