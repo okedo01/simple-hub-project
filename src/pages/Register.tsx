@@ -11,7 +11,7 @@ import {
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
-import { useForm } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { getItem, setItem } from '../lib/localStorage';
 import z from 'zod';
@@ -40,36 +40,44 @@ const Register: React.FC = () => {
     } = useForm<formFields>({
         defaultValues: {
             email: "studentHub@gmail.com"
-        }
+        },
+        resolver: zodResolver(schema);
     });
 
-    const onSubmit = async (data: formFields) => {
-
-        const student = {
-            ...data,
-            courseID: courseID,
-            courseTitle: courses?.title,
-            progress: Math.floor((Math.random() * 100)) + 1,
-        }
-        const storedStudent = getItem<typeof student[]>("students") ?? [];
-        setItem("students", [...storedStudent, student])
-
-        Swal.fire({
-            title: '🎉 Registration Successful!',
-            text: `You are now enrolled in "${courses?.title}"`,
-            icon: 'success',
-            confirmButtonText: 'Go Back Home',
-            showCancelButton: true,
-            cancelButtonText: 'Start Exercises',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                navigate("/");
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
-                navigate(`/courses/${courseID}`);
+    const onSubmit: SubmitHandler<formFields> = async (data: formFields) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            const student = {
+                ...data,
+                courseID: courseID,
+                courseTitle: courses?.title,
+                progress: Math.floor((Math.random() * 100)) + 1,
             }
-        });
-        reset();
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+            const storedStudent = getItem<typeof student[]>("students") ?? [];
+            setItem("students", [...storedStudent, student])
+
+            Swal.fire({
+                title: '🎉 Registration Successful!',
+                text: `You are now enrolled in "${courses?.title}"`,
+                icon: 'success',
+                confirmButtonText: 'Go Back Home',
+                showCancelButton: true,
+                cancelButtonText: 'Start Exercises',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate("/");
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    navigate(`/courses/${courseID}`);
+                }
+            });
+            reset();
+        } catch (error) {
+            setError("root", {
+                message: "This email is already taken",
+            })
+        }
+
+
 
     }
 
@@ -133,10 +141,10 @@ const Register: React.FC = () => {
                             )}
                             <CardFooter className="">
                                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
-                                    { isSubmitting ? "Registering" : "Register"}
+                                    {isSubmitting ? "Registering" : "Register"}
                                 </Button>
                             </CardFooter>
-                            { errors.root && <div className="text-red-500">{errors.root.message}</div>}
+                            {errors.root && <div className="text-red-500">{errors.root.message}</div>}
                         </div>
                     </form>
                 </CardContent>
