@@ -96,15 +96,7 @@ const Login: React.FC = () => {
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  {...register("email", {
-                    required: "Email is required",
-                  }
-                  )}
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
-                />
+                <Input {...register("email")} id="email" type="email" placeholder="m@example.com" />
               </div>
               {errors.email && (
                 <p className="text-red-600 text-sm">{`${errors.email.message}`}</p>
@@ -113,15 +105,7 @@ const Login: React.FC = () => {
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
                 </div>
-                <Input
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: {
-                      value: 7,
-                      message: "Password must be 7 characters"
-                    }
-                  })}
-                  id="password" type="password" />
+                <Input {...register("password")} id="password" type="password" />
               </div>
               {errors.password && (
                 <p className="text-red-600 text-sm">{`${errors.password.message}`}</p>
