@@ -14,12 +14,15 @@ import { Label } from '../components/ui/label';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { getItem, setItem } from '../lib/localStorage';
+import z from 'zod';
 
-type formData = {
-    name: string
-    email: string
-    password: string
-}
+const schema = z.object({
+    name: z.string().min(4),
+    email: z.string().email(),
+    password: z.string().min(8),
+});
+
+type formFields = z.infer<typeof schema>;
 
 const Register: React.FC = () => {
     const [courses, setCourses] = useState<Courses | null>(null);
@@ -34,9 +37,13 @@ const Register: React.FC = () => {
         handleSubmit,
         reset,
         formState: { errors, isSubmitting }
-    } = useForm<formData>();
+    } = useForm<formFields>({
+        defaultValues: {
+            email: "studentHub@gmail.com"
+        }
+    });
 
-    const onSubmit = async (data: formData) => {
+    const onSubmit = async (data: formFields) => {
 
         const student = {
             ...data,
@@ -103,26 +110,14 @@ const Register: React.FC = () => {
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="name">Name</Label>
-                                <Input
-                                    {...register("name", {
-                                        required: "Name is required",
-                                        minLength: {
-                                            value: 4,
-                                            message: "Name must be 4 characters"
-                                        }
-                                    })}
-                                    type="text" placeholder="Enter your name" />
+                                <Input {...register("name")} type="text" placeholder="Enter your name" />
                             </div>
                             {errors.name && (
                                 <p className="text-red-500 text-sm">{errors.name.message}</p>
                             )}
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input
-                                    {...register("email", {
-                                        required: "Email is requires",
-                                    })}
-                                    id="email" type="email" placeholder="m@example.com" />
+                                <Input {...register("email")} id="email" type="email" placeholder="m@example.com" />
                             </div>
                             {errors.email && (
                                 <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -131,24 +126,17 @@ const Register: React.FC = () => {
                                 <div className="flex items-center">
                                     <Label htmlFor="password">Password</Label>
                                 </div>
-                                <Input
-                                    {...register("password", {
-                                        required: "Password is required",
-                                        minLength: {
-                                            value: 7,
-                                            message: "Password must be 7 characters"
-                                        }
-                                    })}
-                                    id="password" type="password" />
+                                <Input {...register("password")} id="password" type="password" />
                             </div>
                             {errors.password && (
                                 <p className="text-red-500 text-sm">{errors.password.message}</p>
                             )}
                             <CardFooter className="">
                                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
-                                    Register
+                                    { isSubmitting ? "Registering" : "Register"}
                                 </Button>
                             </CardFooter>
+                            { errors.root && <div className="text-red-500">{errors.root.message}</div>}
                         </div>
                     </form>
                 </CardContent>
