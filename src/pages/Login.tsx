@@ -68,6 +68,7 @@ const Login: React.FC = () => {
 
     } catch (error) {
       setError("root", {
+        type: "manual",
         message: "This email is already taken",
       })
     }
@@ -113,7 +114,7 @@ const Login: React.FC = () => {
 
               <CardFooter className="">
                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
-                  Login
+                  { isSubmitting ? "Loging in" : "Login"}
                 </Button>
               </CardFooter>
             </div>

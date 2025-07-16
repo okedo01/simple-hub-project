@@ -40,6 +40,7 @@ const SignUp: React.FC = () => {
             reset();
         } catch (error) {
             setError("root", {
+                type: "manual",
                 message: "This email is already taken"
             })
         }
