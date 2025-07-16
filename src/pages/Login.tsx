@@ -18,9 +18,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(7),
-})
+  name: z.string().min(4, "Name must be at least 4 characters").trim(),
+  email: z.string().email("Invalid email").trim(),
+  password: z.string().min(7, "Password must be at least 7 characters"),
+});
 
 type formFields = z.infer<typeof schema>;
 
@@ -114,7 +115,7 @@ const Login: React.FC = () => {
 
               <CardFooter className="">
                 <Button type="submit" disabled={isSubmitting} className="w-full disabled:bg-gray-900">
-                  { isSubmitting ? "Loging in" : "Login"}
+                  {isSubmitting ? "Loging in" : "Login"}
                 </Button>
               </CardFooter>
             </div>
