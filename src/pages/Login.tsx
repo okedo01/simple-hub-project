@@ -15,7 +15,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { email, z } from 'zod'
+import { z } from 'zod'
 
 const schema = z.object({
   email: z.string().email(),
@@ -33,6 +33,7 @@ const Login: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError,
     reset,
   } = useForm<formFields>({
     resolver: zodResolver(schema),
@@ -40,37 +41,43 @@ const Login: React.FC = () => {
 
 
   const onSubmit: SubmitHandler<formFields> = async (data) => {
-    setLoginError("");
+    try {
+      setLoginError("");
 
-    const storedUser = localStorage.getItem("user");
+      const storedUser = localStorage.getItem("user");
 
-    if (!storedUser) {
-      setLoginError("No user found. Please sign up first.");
-      return;
+      if (!storedUser) {
+        setLoginError("No user found. Please sign up first.");
+        return;
+      }
+
+      const parseUser = JSON.parse(storedUser);
+
+      if (data.email === parseUser.email && data.password === parseUser.password) {
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+        Login(data.email);
+
+        reset();
+
+        navigate("/");
+      } else {
+        setLoginError("Invalid Credentials");
+      }
+
+
+    } catch {
+      setError("root", {
+        message: "This email is already taken",
+      })
     }
-
-    const parseUser = JSON.parse(storedUser);
-
-    if (data.email === parseUser.email && data.password === parseUser.password) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      Login(data.email);
-
-      reset();
-
-      navigate("/");
-    } else {
-      setLoginError("Invalid Credentials");
-    }
-
-
 
   }
 
   return (
     <div className="grid justify-items-center items-center min-h-screen">
-      { loginError && (
-        <p className="text-sm text-red-500">{ loginError }</p>
+      {loginError && (
+        <p className="text-sm text-red-500">{loginError}</p>
       )}
       <Card className="w-full max-w-sm">
         <CardHeader>
