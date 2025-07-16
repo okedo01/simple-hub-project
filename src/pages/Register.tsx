@@ -20,7 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 const schema = z.object({
     name: z.string().min(4),
     email: z.string().email(),
-    password: z.string().min(8),
+    password: z.string().min(7),
 });
 
 type formFields = z.infer<typeof schema>;

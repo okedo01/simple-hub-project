@@ -11,14 +11,18 @@ import {
 } from "../components/ui/card"
 import { Input } from "../components/ui/input"
 import { Label } from "../components/ui/label"
-import { useForm } from 'react-hook-form'
+import { useForm, type SubmitHandler } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthProvider'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { email, z } from 'zod'
 
-type formData = {
-  email: string
-  password: string
-}
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(7),
+})
+
+type formFields = z.infer<typeof schema>;
 
 const Login: React.FC = () => {
   const [loginError, setLoginError] = useState<string | null>("");
@@ -30,10 +34,12 @@ const Login: React.FC = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
     reset,
-  } = useForm<formData>();
+  } = useForm<formFields>({
+    resolver: zodResolver(schema),
+  });
 
 
-  const onSubmit = async (data: formData) => {
+  const onSubmit: SubmitHandler<formFields> = async (data) => {
     setLoginError("");
 
     const storedUser = localStorage.getItem("user");
