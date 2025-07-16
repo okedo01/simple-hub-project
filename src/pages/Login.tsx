@@ -66,7 +66,7 @@ const Login: React.FC = () => {
       }
 
 
-    } catch {
+    } catch (error) {
       setError("root", {
         message: "This email is already taken",
       })
