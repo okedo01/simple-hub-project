@@ -29,9 +29,9 @@ export const AuthProvider = ({ children }: props) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if(storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
     }
-  })
+  }, [])
 
   const Login = (email: string) => {
     navigate("/");
