@@ -41,7 +41,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl mb-4">All Registered Students</h1>
+      <h1 className="text-4xl mb-4"><strong>All Registered Students</strong></h1>
       {students.map((student, index) => (
         <div key={index} className="p-4 border-b space-y-2">
           {editIndex === index ? (

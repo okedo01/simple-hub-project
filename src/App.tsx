@@ -8,7 +8,6 @@ import SignUp from "./pages/SignUp"
 import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 import Logout from "./pages/Logout"
 import Register from "./pages/Register"
-import AdminDashboard from "./components/custom-components/AdminDashboard"
 
 function App() {
   return (
