@@ -61,12 +61,12 @@ const Register: React.FC = () => {
                 icon: 'success',
                 confirmButtonText: 'Go Back Home',
                 showCancelButton: true,
-                cancelButtonText: 'Start Exercises',
+                cancelButtonText: 'View Students',
             }).then((result) => {
                 if (result.isConfirmed) {
                     navigate("/");
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    navigate(`/courses/${courseID}`);
+                    navigate("/admin");
                 }
             });
             reset();
