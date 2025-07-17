@@ -18,22 +18,6 @@ const AdminDashboard: React.FC = () => {
     setStudents(deleted);
   };
 
-  const handleAdd = () => {
-    const newStudent: Students = {
-      id: Date.now(),
-      name: "",
-      email: "",
-      password: "",
-      course: "",
-      courseID: 0,
-      progress: 0,
-      courseTitle: "",
-    };
-    const added = [...students, newStudent];
-    setItem("students", added);
-    setStudents(added);
-  };
-
   const handleEditClick = (index: number) => {
     setEditIndex(index);
     setEditData(students[index]);
