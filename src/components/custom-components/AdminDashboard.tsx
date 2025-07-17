@@ -58,14 +58,6 @@ const AdminDashboard: React.FC = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl mb-4">All Registered Students</h1>
-
-      <button
-        onClick={handleAdd}
-        className="bg-gray-600 text-white px-4 py-2 mb-4 rounded"
-      >
-        Add Student
-      </button>
-
       {students.map((student, index) => (
         <div key={index} className="p-4 border-b space-y-2">
           {editIndex === index ? (
