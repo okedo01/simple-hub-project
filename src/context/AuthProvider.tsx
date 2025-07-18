@@ -5,7 +5,7 @@ type AuthContextType = {
   user: string | null
   Login: (email: string) => void
   Logout: () => void
-  Signup: (email: string) => void
+  Signup: (email: string, password: string) => void
 }
 
 type props = {
@@ -34,7 +34,9 @@ export const AuthProvider = ({ children }: props) => {
     }
   }, [])
 
-  const Signup = (email: string) => {
+  const Signup = (email: string, password: string) => {
+    const user = { email, password };
+    localStorage.setItem("user", JSON.stringify(user));
     navigate("/login");
     setUser(email);
   }
