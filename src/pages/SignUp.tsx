@@ -23,9 +23,9 @@ const schema = z.object({
 
 type formFields = z.infer<typeof schema>;
 
-const { Signup } = useAuth();
-
 const SignUp: React.FC = () => {
+
+    const { Signup } = useAuth();
 
     const {
         register,
