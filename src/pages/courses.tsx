@@ -32,6 +32,8 @@ const courses: React.FC = () => {
       })
   }, [])
 
+  if(error) return <p>Failed</p>
+
   return (
     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 m-5">
       {courses.map(course => (
