@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { useForm, type SubmitHandler } from 'react-hook-form'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useAuth } from "../context/AuthProvider"
 
 const schema = z.object({
     name: z.string().min(4, "Name must be at least 4 characters").trim(),
@@ -21,6 +22,8 @@ const schema = z.object({
 });
 
 type formFields = z.infer<typeof schema>;
+
+const { Signup } = useAuth();
 
 const SignUp: React.FC = () => {
 
@@ -37,7 +40,8 @@ const SignUp: React.FC = () => {
     const onSubmit: SubmitHandler<formFields> = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            localStorage.setItem("user", JSON.stringify(data));
+            // localStorage.setItem("user", JSON.stringify(data));
+            Signup(data.email);
             reset();
         } catch (error) {
             setError("root", {

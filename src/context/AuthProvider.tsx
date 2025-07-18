@@ -5,6 +5,7 @@ type AuthContextType = {
   user: string | null
   Login: (email: string) => void
   Logout: () => void
+  Signup: (email: string) => void
 }
 
 type props = {
@@ -33,6 +34,11 @@ export const AuthProvider = ({ children }: props) => {
     }
   }, [])
 
+  const Signup = (email: string) => {
+    navigate("/login");
+    setUser(email);
+  }
+
   const Login = (email: string) => {
     navigate("/");
     setUser(email);
@@ -46,7 +52,7 @@ export const AuthProvider = ({ children }: props) => {
   }
 
   return (
-    <AuthContext.Provider value={{ user, Login, Logout }}>
+    <AuthContext.Provider value={{ user, Login, Logout, Signup }}>
       {children}
     </AuthContext.Provider>
   )
