@@ -40,7 +40,7 @@ const SignUp: React.FC = () => {
     const onSubmit: SubmitHandler<formFields> = async (data) => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000));
-            // localStorage.setItem("user", JSON.stringify(data));
+          
             Signup(data.email);
             reset();
         } catch (error) {
