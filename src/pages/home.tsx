@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4">
       <div className="text-center max-w-md w-full">
-        <h1 className="text-3xl font-bold mb-4">Welcome {user?.split("@")[0] || "Back"}!</h1>
+        <h1 className="text-3xl font-bold mb-4">Welcome {user || "Back"}!</h1>
         <p className="text-slate-600 mb-6">
           You're logged in successfully. Start exploring your courses or continue where you left off.
         </p>

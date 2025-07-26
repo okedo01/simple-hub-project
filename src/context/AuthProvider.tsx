@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }: props) => {
     const storedUser = localStorage.getItem("user");
     if(storedUser) {
       const parsedUser = JSON.parse(storedUser)
-      setUser(parsedUser);
+      setUser(parsedUser.name);
     }
   }, [])
 
