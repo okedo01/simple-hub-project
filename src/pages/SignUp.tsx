@@ -42,6 +42,7 @@ const SignUp: React.FC = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
           
             Signup(data.name, data.email, data.password);
+            
             reset();
         } catch (error) {
             setError("root", {

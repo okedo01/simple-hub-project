@@ -55,7 +55,7 @@ const Login: React.FC = () => {
       const parseUser = JSON.parse(storedUser);
 
       if (data.email === parseUser.email && data.password === parseUser.password) {
-        setUser(parseUser.name);
+        setUser(parseUser.name)
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         Login(data.email, data.password);
