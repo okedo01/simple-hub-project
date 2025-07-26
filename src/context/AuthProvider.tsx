@@ -30,7 +30,8 @@ export const AuthProvider = ({ children }: props) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if(storedUser) {
-      setUser(storedUser);
+      const parsedUser = JSON.parse(storedUser)
+      setUser(parsedUser);
     }
   }, [])
 
