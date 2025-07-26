@@ -67,7 +67,7 @@ const SignUp: React.FC = () => {
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Name</Label>
-                                <Input {...register("name")} id="name" type="name" placeholder="Okedo" />
+                                <Input {...register("name")} id="name" type="name" placeholder="Enter your name" />
                             </div>
                             {errors.name && (
                                 <p className="text-red-800 text-sm">{`${errors.name.message}`}</p>
