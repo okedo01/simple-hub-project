@@ -41,7 +41,8 @@ export const AuthProvider = ({ children }: props) => {
     navigate("/login");
   }
 
-  const Login = (email: string) => {
+  const Login = (email: string, password: string) => {
+    const user = { email, password };
     localStorage.setItem("user", email);
     setUser(email);
     navigate("/");
