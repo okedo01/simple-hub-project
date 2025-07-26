@@ -65,6 +65,13 @@ const SignUp: React.FC = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="flex flex-col gap-6">
                             <div className="grid gap-2">
+                                <Label htmlFor="email">Name</Label>
+                                <Input {...register("name")} id="name" type="name" placeholder="Okedo" />
+                            </div>
+                            {errors.name && (
+                                <p className="text-red-800 text-sm">{`${errors.name.message}`}</p>
+                            )}
+                            <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input {...register("email")} id="email" type="email" placeholder="m@example.com" />
                             </div>
