@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getItem, setItem } from '../../lib/localStorage';
 import type { Students } from '../../lib/Types';
+import { Link } from 'react-router-dom';
+import { Button } from '../ui/button';
 
 const AdminDashboard: React.FC = () => {
   const [students, setStudents] = useState<Students[]>([]);
@@ -63,6 +65,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="p-4">
+
       <h1 className="text-4xl mb-4"><strong>All Registered Students</strong></h1>
       {students.map((student, index) => (
         <div key={index} className="p-4 border-b space-y-2">
@@ -141,7 +144,9 @@ const AdminDashboard: React.FC = () => {
       >
         Export as CSV
       </button>
-
+      <Link to="/logout">
+        <Button variant="outline" className="block w-full mt-4">Logout</Button>
+      </Link>
     </div>
   );
 };
