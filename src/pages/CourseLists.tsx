@@ -29,6 +29,7 @@ const courses: React.FC = () => {
         console.log(courses)
       })
       .catch(err => {
+        console.error("Fetch error:", err);
         setError(err.message);
       })
   }, [])
