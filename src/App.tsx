@@ -8,7 +8,7 @@ import Logout from "./pages/Logout"
 import Register from "./pages/Register"
 import AdminDashboard from "./components/custom-components/AdminDashboard"
 import Layout from "./components/custom-components/Layout"
-import Home from "./pages/home"
+import Home from "./pages/HomePg"
 
 function App() {
   return (
