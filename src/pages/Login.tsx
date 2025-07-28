@@ -47,6 +47,10 @@ const Login: React.FC = () => {
 
       const storedUser = localStorage.getItem("user");
 
+      if(!user) {
+        console.log("No user found!");
+      }
+
       if (!storedUser) {
         setLoginError("No user found. Please sign up first.");
         return;
