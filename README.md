@@ -69,7 +69,3 @@ StudentHub is a modern web application built with **React + TypeScript** that al
 | Tailwind CSS     | Utility-first styling                    |
 | SweetAlert2      | Custom popups and notifications          |
 
----
-
-## 📁 Project Structure
-
