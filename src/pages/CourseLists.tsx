@@ -17,7 +17,7 @@ const courses: React.FC = () => {
   const [ error, setError ] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("./src/data/data.json")
+    fetch("./public/data/data.json")
       .then(resource => {
         if(!resource.ok) {
           throw new Error("Failed to fetch");
@@ -26,6 +26,7 @@ const courses: React.FC = () => {
       })
       .then((courses: Courses[]) => {
         setCourses(courses);
+        console.log(courses)
       })
       .catch(err => {
         setError(err.message);
