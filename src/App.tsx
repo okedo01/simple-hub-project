@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom"
-import Courses from "./pages/Courses"
+import Courses from "./pages/CourseLists"
 import NotFound from "./components/custom-components/NotFound"
 import Login from "./pages/Login"
 import SignUp from "./pages/SignUp"
@@ -7,7 +7,7 @@ import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 import Logout from "./pages/Logout"
 import Register from "./pages/Register"
 import AdminDashboard from "./components/custom-components/AdminDashboard"
-import Layout from "./components/custom-components/Layout"
+import Layout from "./components/custom-components/LayoutDashboard"
 import Home from "./pages/HomePg"
 
 function App() {
