@@ -1,6 +1,4 @@
 import { Route, Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import Layout from "./components/custom-components/Layout"
 import Courses from "./pages/Courses"
 import NotFound from "./components/custom-components/NotFound"
 import Login from "./pages/Login"
@@ -9,6 +7,8 @@ import ProtectedRoute from "./components/custom-components/ProtectedRoute"
 import Logout from "./pages/Logout"
 import Register from "./pages/Register"
 import AdminDashboard from "./components/custom-components/AdminDashboard"
+import Layout from "./components/custom-components/Layout"
+import Home from "./pages/home"
 
 function App() {
   return (
